@@ -29,4 +29,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/contact/{contact}', function (Contact $contact) {
+    return Inertia::render('Contact/Show', ['contact'=>$contact]);
+})->middleware(['auth', 'verified'])->name('contact.show');
+
 require __DIR__.'/auth.php';
