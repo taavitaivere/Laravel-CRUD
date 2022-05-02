@@ -21,7 +21,6 @@ class ContactController extends Controller
     public function edit(Contact $contact){
 
        return view('contact.edit', compact('contact'));
-
     }
 
     public function index()
@@ -29,6 +28,7 @@ class ContactController extends Controller
         $contacts = Contact::all();
         return view('contact.index', compact('contacts'));
     }
+
 
     /**
      * Handle an incoming registration request.
