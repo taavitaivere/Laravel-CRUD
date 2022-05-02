@@ -33,4 +33,9 @@ Route::get('/contact/{contact}', function (Contact $contact) {
     return Inertia::render('Contact/Show', ['contact'=>$contact]);
 })->middleware(['auth', 'verified'])->name('contact.show');
 
+Route::get('/contact', function () {
+
+    return Inertia::render('Contact/Index', ['contacts'=> Contact::all()]);
+})->middleware(['auth', 'verified'])->name('contact.index');
+
 require __DIR__.'/auth.php';

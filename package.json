@@ -26,5 +26,13 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "tailwindcss": "^3.0.18"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mui/core": "^5.0.0-alpha.54",
+        "@mui/material": "^5.6.3",
+        "@mui/x-data-grid": "^5.10.0",
+        "@mui/x-data-grid-generator": "^5.10.0"
     }
 }
