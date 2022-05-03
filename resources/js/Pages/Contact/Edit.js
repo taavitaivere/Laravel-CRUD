@@ -20,7 +20,7 @@ export default function Edit( props ) {
         setData(event.target.name , event.target.value)
     };
 
-    const checkboxHandleChange = (event) => {
+    const onCheckboxHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value)
     }
 
@@ -36,8 +36,7 @@ export default function Edit( props ) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Contact #{props.contact.id} </h2>}
         >
             <Head title="Edit" />
-                <div
-                    className="max-w-2xl w-full mx-auto my-8 flex flex-col sm:justify-center items-center pt-6 bg-gray-100">
+                <div className="max-w-2xl w-full mx-auto my-8 flex flex-col sm:justify-center items-center pt-6 bg-gray-100">
                         <form className="w-2/4" onSubmit={handleSubmit}>
                             <div className="border-b border-gray-300 p-2">
                                 <TextField
@@ -56,7 +55,8 @@ export default function Edit( props ) {
                                     name="city"
                                     value={data.city}
                                     label="city"
-                                    onChange={onHandleChange}/>
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="border-b border-gray-300 p-2">
                                 <TextField
@@ -65,7 +65,8 @@ export default function Edit( props ) {
                                     name="phone"
                                     value={data.phone}
                                     label="phone"
-                                    onChange={onHandleChange}/>
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="border-b border-gray-300 p-2">
                                 <TextField
@@ -74,7 +75,8 @@ export default function Edit( props ) {
                                     name="age"
                                     value={data.age}
                                     label="age"
-                                    onChange={onHandleChange}/>
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="border-b border-gray-300 p-2">
                                 <TextField
@@ -83,7 +85,8 @@ export default function Edit( props ) {
                                     name="country"
                                     value={data.country}
                                     label="country"
-                                    onChange={onHandleChange}/>
+                                    onChange={onHandleChange}
+                                />
                             </div>
                             <div className="border-b border-gray-300 p-2">
                                 <Label forInput="employee" value="Employee"/>
@@ -92,7 +95,7 @@ export default function Edit( props ) {
                                     label="employee"
                                     name="employee"
                                     checked={data.employee}
-                                    onChange={checkboxHandleChange}
+                                    onChange={onCheckboxHandleChange}
                                 />
                             </div>
                             <div className="w-max-sm flex items-center justify-center mt-4">
@@ -101,6 +104,5 @@ export default function Edit( props ) {
                         </form>
                    </div>
         </Authenticated>
-
     );
 }
