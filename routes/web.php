@@ -41,5 +41,4 @@ Route::get('/contact/{contact}', function (Contact $contact) {
 Route::patch('/contact/{contact}/update', [ContactController::class, 'update'])
 ->name('contact.update');
 
-
 require __DIR__.'/auth.php';
