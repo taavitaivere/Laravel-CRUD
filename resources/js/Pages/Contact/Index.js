@@ -2,7 +2,6 @@ import React from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-
 import Button  from "@mui/material/Button";
 
 export default function Index(props) {
@@ -10,14 +9,14 @@ export default function Index(props) {
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'name', headerName: 'First name', width: 130 },
         { field: 'city', headerName: 'City', width: 130 },
-        { field: 'phone', headerName: 'Phone', type: 'number', width: 90, },
-        { field: 'age', headerName: 'Age', type: 'number', width: 90, },
+        { field: 'phone', headerName: 'Phone', type: 'number', width: 90 },
+        { field: 'age', headerName: 'Age', type: 'number', width: 90 },
         { field: 'country', headerName: 'Country', width: 130 },
         { field: 'employee', headerName: 'Employee', width: 130 },
         { field: 'showUrl', headerName: 'Show', width: 90, renderCell: (cellValues) => {
-                return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
-                    Show
-                </Button>;
+            return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
+                Show
+            </Button>;
             }
         },
     ];
@@ -31,8 +30,6 @@ export default function Index(props) {
             age: contact.age,
             country: contact.country,
             employee: contact.employee,
-
-
         }
     });
 
