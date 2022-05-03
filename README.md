@@ -119,6 +119,10 @@ Creating migration, model, controller, [resource, factory(dummy data)]
 ``` bash
 php artisan make:model Contact -a
 ```
+Creating policy permission.
+``` bash
+php artisan make:policy ContactPolicy --model=Contact
+```
 
 Created views:
 resources/views/contact
@@ -211,4 +215,44 @@ Calling out checkbox component:
     autofocus 
 />
 ```
-###
+
+ContactPolicy.php
+* Return user_id who created the contact
+```php
+return $user->id === $contact->user_id;
+```
+ContactPolicy implementation with controller
+* Only user who created the contact can update 
+```php
+if ($request->user()->cannot('update', $contact)) {
+            abort(403);
+        }
+```
+### Git commands
+
+Change current branch to master: git checkout master
+
+Change current branch to development and create if it does not exist: git checkout -b development 
+
+Push changes to git: git push
+
+Pull changes to git: git pull
+
+Add git commit message: git commit -m ""
+
+Add files to be committed soon: git add
+
+Pull local master branch to current branch: git merge master
+
+Show current status: git status
+
+Get git history: git reflog
+
+Get file difference: git diff | less/more
+
+Undo file changes: git restore
+
+List local branches: git branch
+
+Update metadata: git fetch origin
+

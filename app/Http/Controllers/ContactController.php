@@ -77,6 +77,10 @@ class ContactController extends Controller
             'country' => 'required',
         ]);
 
+        if ($request->user()->cannot('update', $contact)) {
+            abort(403);
+        }
+
         $contact->update([
             'name' => $request->name,
             'city' => $request->city,
