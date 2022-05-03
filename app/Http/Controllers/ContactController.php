@@ -21,7 +21,6 @@ class ContactController extends Controller
     public function edit(Contact $contact){
 
        return view('contact.edit', compact('contact'));
-
     }
 
     public function index()

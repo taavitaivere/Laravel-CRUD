@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Models\Contact;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,9 +31,17 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/contact/create', function () {
+    return Inertia::render('Contact/Create');
+})->middleware(['auth', 'verified'])->name('contact.create');
+
 Route::get('/contact/{contact}', function (Contact $contact) {
     return Inertia::render('Contact/Show', ['contact'=>$contact]);
 })->middleware(['auth', 'verified'])->name('contact.show');
+
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('contact.store');
 
 Route::get('/contact', function () {
     return Inertia::render('Contact/Index', ['contacts'=> Contact::all()]);
