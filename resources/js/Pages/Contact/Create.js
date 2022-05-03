@@ -47,11 +47,10 @@ export default function Create(props) {
                                     className="mt-1 block w-full"
                                     autoComplete="name"
                                     onChange={onHandleChange}
-                                    required
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mb-4">
                                 <TextField
                                     id="outlined-basic"
                                     variant="outlined"
@@ -62,11 +61,10 @@ export default function Create(props) {
                                     className="mt-1 block w-full"
                                     autoComplete="city"
                                     onChange={onHandleChange}
-                                    required
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mb-4">
                                 <TextField
                                     id="outlined-basic"
                                     variant="outlined"
@@ -77,11 +75,10 @@ export default function Create(props) {
                                     className="mt-1 block w-full"
                                     autoComplete="phone"
                                     onChange={onHandleChange}
-                                    required
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mb-4">
                                 <TextField
                                     id="outlined-basic"
                                     variant="outlined"
@@ -91,11 +88,10 @@ export default function Create(props) {
                                     value={data.age}
                                     className="mt-1 block w-full"
                                     onChange={onHandleChange}
-                                    required
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mb-4">
                                 <TextField
                                     id="outlined-basic"
                                     variant="outlined"
@@ -105,17 +101,16 @@ export default function Create(props) {
                                     value={data.country}
                                     className="mt-1 block w-full"
                                     onChange={onHandleChange}
-                                    required
                                 />
                             </div>
 
-                            <div className="mt-4">
+                            <div className="mb-4">
                                 <formGroup>
                                     <FormControlLabel control={<Checkbox name="employee" onChange={onHandleChange} />} label="Employee"/>
                                 </formGroup>
                             </div>
 
-                            <div className="flex items-center justify-center mt-5">
+                            <div className="flex items-center justify-center mt-5 w-full">
                                 <Button className="ml-4" type="submit" processing={processing}>
                                     Add
                                 </Button>
