@@ -35,8 +35,8 @@ export default function Create(props) {
             <ValidationErrors errors={errors} />
                 <Head title="Create" />
                     <div className="max-w-2xl w-full mx-auto my-8 flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 ">
-                        <form onSubmit={submit} className="bg-white px-5 py-3">
-                            <div>
+                        <form onSubmit={submit} className="px-5 py-3 w-2/4">
+                            <div className="mb-4">
                                 <TextField
                                     id="outlined-basic"
                                     variant="outlined"
@@ -110,8 +110,8 @@ export default function Create(props) {
                                 </formGroup>
                             </div>
 
-                            <div className="flex items-center justify-center mt-5 w-full">
-                                <Button className="ml-4" type="submit" processing={processing}>
+                            <div className="mt-5 w-full">
+                                <Button className="justify-center w-full rounded bg-indigo-600 text-indigo-50 p-2 hover:bg-indigo-400" type="submit" processing={processing}>
                                     Add
                                 </Button>
                             </div>

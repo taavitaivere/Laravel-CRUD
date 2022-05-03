@@ -38,7 +38,7 @@ export default function Edit( props ) {
             <Head title="Edit" />
                 <div className="max-w-2xl w-full mx-auto my-8 flex flex-col sm:justify-center items-center pt-6 bg-gray-100">
                         <form className="w-2/4" onSubmit={handleSubmit}>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <TextField
                                     className="w-full"
                                     id="outlined-basic"
@@ -48,7 +48,7 @@ export default function Edit( props ) {
                                     onChange={onHandleChange}
                                 />
                             </div>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <TextField
                                     className="w-full"
                                     id="outlined-basic"
@@ -58,7 +58,7 @@ export default function Edit( props ) {
                                     onChange={onHandleChange}
                                 />
                             </div>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <TextField
                                     className="w-full"
                                     id="outlined-basic"
@@ -68,7 +68,7 @@ export default function Edit( props ) {
                                     onChange={onHandleChange}
                                 />
                             </div>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <TextField
                                     className="w-full"
                                     id="outlined-basic"
@@ -78,7 +78,7 @@ export default function Edit( props ) {
                                     onChange={onHandleChange}
                                 />
                             </div>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <TextField
                                     className="w-full"
                                     id="outlined-basic"
@@ -88,7 +88,7 @@ export default function Edit( props ) {
                                     onChange={onHandleChange}
                                 />
                             </div>
-                            <div className="border-b border-gray-300 p-2">
+                            <div className="p-2">
                                 <Label forInput="employee" value="Employee"/>
                                 <Checkbox
                                     type="checkbox"
