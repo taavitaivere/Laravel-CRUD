@@ -14,9 +14,15 @@ export default function Index(props) {
         { field: 'country', headerName: 'Country', width: 130 },
         { field: 'employee', headerName: 'Employee', width: 130 },
         { field: 'showUrl', headerName: 'Show', width: 90, renderCell: (cellValues) => {
-            return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
-                Show
-            </Button>;
+                return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
+                    Show
+                </Button>;
+            }
+        },
+        { field: 'editUrl', headerName: 'Edit', width: 90, renderCell: (cellValues) => {
+                return <Button variant="contained" href={route('contact.edit', cellValues.row.id)}>
+                    Edit
+                </Button>;
             }
         },
     ];
@@ -37,7 +43,13 @@ export default function Index(props) {
         <Authenticated
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight"> Contact list</h2>}
+            header={<>
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight inline-block mr-2"> Contact list</h2>
+                <a className="inline-block px-2 py-1 rounded bg-indigo-600 text-sm text-indigo-50  hover:bg-indigo-400"
+                   href={route('contact.create')}>
+                    Create
+                </a>
+            </>}
         >
             <Head title="Contact list" />
             <div className="max-w-7xl w-full mx-auto flex justify-center gap-4 my-8 items-center pt-6 sm:pt-0 bg-gray-100">
