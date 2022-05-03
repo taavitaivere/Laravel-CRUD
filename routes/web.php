@@ -43,4 +43,8 @@ Route::post('/contact', [ContactController::class, 'store'])
     ->middleware(['auth', 'verified'])
     ->name('contact.store');
 
+Route::get('/contact', function () {
+    return Inertia::render('Contact/Index', ['contacts'=> Contact::all()]);
+})->middleware(['auth', 'verified'])->name('contact.index');
+
 require __DIR__.'/auth.php';

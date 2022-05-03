@@ -30,8 +30,11 @@
     "dependencies": {
         "@emotion/react": "^11.9.0",
         "@emotion/styled": "^11.8.1",
-        "@mui/material": "^5.6.3",
         "@mui/styled-engine-sc": "^5.6.1",
-        "styled-components": "^5.3.5"
+        "styled-components": "^5.3.5",
+        "@mui/core": "^5.0.0-alpha.54",
+        "@mui/material": "^5.6.3",
+        "@mui/x-data-grid": "^5.10.0",
+        "@mui/x-data-grid-generator": "^5.10.0"
     }
 }

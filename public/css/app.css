@@ -783,12 +783,6 @@ select {
 .h-9 {
   height: 2.25rem;
 }
-.h-2 {
-  height: 0.5rem;
-}
-.h-full {
-  height: 100%;
-}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1044,14 +1038,6 @@ select {
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-.px-0\.5 {
-  padding-left: 0.125rem;
-  padding-right: 0.125rem;
-}
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 .px-5 {
   padding-left: 1.25rem;
