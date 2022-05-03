@@ -29,7 +29,6 @@ class ContactController extends Controller
         return view('contact.index', compact('contacts'));
     }
 
-
     /**
      * Handle an incoming registration request.
      *
