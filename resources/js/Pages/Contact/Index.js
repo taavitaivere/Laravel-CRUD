@@ -20,24 +20,14 @@ export default function Index(props) {
             }
         },
         { field: 'editUrl', headerName: 'Edit', width: 90, renderCell: (cellValues) => {
-                return <Button variant="contained" href={route('contact.edit', cellValues.row.id)}>
-                    Edit
-                </Button>;
+            if (props.auth.user.id === cellValues.row.user_id) {
+                    return <Button variant="contained" href={route('contact.edit', cellValues.row.id)}>
+                        Edit
+                    </Button>;
+                }
             }
         },
     ];
-
-    const rows = props.contacts.map(contact => {
-        return {
-            id: contact.id,
-            name: contact.name,
-            city: contact.city,
-            phone: contact.phone,
-            age: contact.age,
-            country: contact.country,
-            employee: contact.employee,
-        }
-    });
 
     return (
         <Authenticated
@@ -56,7 +46,7 @@ export default function Index(props) {
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
                         components={{ Toolbar: GridToolbar }}
-                        rows={rows}
+                        rows={props.contacts}
                         columns={columns}
                         pageSize={5}
                         rowsPerPageOptions={[5]}
