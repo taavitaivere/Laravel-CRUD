@@ -11,9 +11,12 @@ export default function Create(props) {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
+    const onHandleChangeFile = (event) => {
+        setData(event.target.name, event.target.files[0] ?? null);
+    };
+
     const submit = (e) => {
         e.preventDefault();
-
         post(route('contact.store'));
     };
 
@@ -24,6 +27,7 @@ export default function Create(props) {
         age: '',
         country: '',
         employee: false,
+        image: null,
     });
 
     return (
@@ -108,6 +112,10 @@ export default function Create(props) {
                                 <FormGroup>
                                     <FormControlLabel control={<Checkbox name="employee" onChange={onHandleChange} />} label="Employee"/>
                                 </FormGroup>
+                            </div>
+                            <div className="mb-4">
+                                <label htmlFor="image">Contact image:</label>
+                                <input type="file" id="image" name="image" onChange={onHandleChangeFile} />
                             </div>
 
                             <div className="mt-5 w-full">

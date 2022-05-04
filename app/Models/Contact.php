@@ -21,6 +21,7 @@ class Contact extends Model
         'age',
         'country',
         'employee',
+        'image',
     ];
 
     /**

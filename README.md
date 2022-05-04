@@ -123,6 +123,10 @@ Creating policy permission.
 ``` bash
 php artisan make:policy ContactPolicy --model=Contact
 ```
+Make files accessible on web. 
+``` bash
+php artisan storage:link
+```
 
 Created views:
 resources/views/contact

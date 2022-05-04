@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('country');
             $table->boolean('employee')->nullable();
+            $table->string('image')->nullable();
             $table->foreignIdFor(User::class);
             $table->timestamps();
         });

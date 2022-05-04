@@ -19,6 +19,11 @@ export default function Show(props) {
                         <div className="border-b border-gray-300 p-2">Age: {props.contact.age}</div>
                         <div className="border-b border-gray-300 p-2">Country: {props.contact.country}</div>
                         <div className="border-b border-gray-300 p-2">Employee: {props.contact.employee ? 'True' : 'False'}</div>
+                        { props.contact.image &&
+                            <div className="border-b border-gray-300 p-2">
+                                <img src={"/storage/" + props.contact.image} title={props.contact.name} />
+                            </div>
+                        }
                     </div>
                 </div>
         </Authenticated>

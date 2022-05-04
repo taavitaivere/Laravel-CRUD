@@ -45,7 +45,10 @@ class ContactController extends Controller
             'phone' => 'required',
             'age' => 'required',
             'country' => 'required',
+            'image' => 'image|max:2048',
         ]);
+
+        $imagePath = $request->image ? $request->image->store('contactImage', 'public') : null;
 
         $contact = auth()->user()->contacts()->create([
             'name' => $request->name,
@@ -54,6 +57,7 @@ class ContactController extends Controller
             'age' => $request->age,
             'country' => $request->country,
             'employee' => $request->employee,
+            'image'=> $imagePath,
         ]);
 
         return redirect(route('contact.show', [$contact]));
@@ -75,20 +79,33 @@ class ContactController extends Controller
             'phone' => 'required',
             'age' => 'required',
             'country' => 'required',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         if ($request->user()->cannot('update', $contact)) {
             abort(403);
         }
 
-        $contact->update([
-            'name' => $request->name,
-            'city' => $request->city,
-            'phone' => $request->phone,
-            'age' => $request->age,
-            'country' => $request->country,
-            'employee' => $request->employee,
-        ]);
+        if ($request->image) {
+            $image = ['image' => $request->image->store('contactImage', 'public')];
+        }
+        else if($request->removeImage) {
+            $image = ['image' => null];
+        } else {
+            $image = [];
+        }
+
+        $contact->update(array_merge(
+            [
+                'name' => $request->name,
+                'city' => $request->city,
+                'phone' => $request->phone,
+                'age' => $request->age,
+                'country' => $request->country,
+                'employee' => $request->employee,
+            ],
+            $image
+        ));
 
         return redirect(route('contact.show', [$contact]));
     }
