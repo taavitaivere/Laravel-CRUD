@@ -3,7 +3,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import {Head, useForm} from '@inertiajs/inertia-react';
 import Button from "@/Components/Button";
 import ValidationErrors from "@/Components/ValidationErrors";
-import {FormControlLabel, TextField} from "@mui/material";
+import { FormGroup, FormControlLabel, TextField} from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
 
 export default function Create(props) {
@@ -105,9 +105,9 @@ export default function Create(props) {
                             </div>
 
                             <div className="mb-4">
-                                <formGroup>
+                                <FormGroup>
                                     <FormControlLabel control={<Checkbox name="employee" onChange={onHandleChange} />} label="Employee"/>
-                                </formGroup>
+                                </FormGroup>
                             </div>
 
                             <div className="mt-5 w-full">
