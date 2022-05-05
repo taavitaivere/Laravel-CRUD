@@ -119,6 +119,12 @@ Creating migration, model, controller, [resource, factory(dummy data)]
 ``` bash
 php artisan make:model Contact -a
 ```
+
+Creating new migration for existing table.
+``` bash
+sail artisan make:migration implement_soft_delete_users_table
+```
+
 Creating policy permission.
 ``` bash
 php artisan make:policy ContactPolicy --model=Contact

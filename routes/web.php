@@ -44,7 +44,7 @@ Route::get('/contact/{contact}', function (Contact $contact) {
 })->middleware(['auth', 'verified'])->name('contact.show');
 
 Route::patch('/contact/{contact}/update', [ContactController::class, 'update'])
-->name('contact.update');
+    ->name('contact.update');
 
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware(['auth', 'verified'])
@@ -53,5 +53,9 @@ Route::post('/contact', [ContactController::class, 'store'])
 Route::get('/contact', function () {
     return Inertia::render('Contact/Index', ['contacts'=> Contact::all()]);
 })->middleware(['auth', 'verified'])->name('contact.index');
+
+Route::delete('/contact/{contact}', [ContactController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('contact.destroy');
 
 require __DIR__.'/auth.php';

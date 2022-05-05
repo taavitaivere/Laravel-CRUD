@@ -3,6 +3,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Button  from "@mui/material/Button";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Index(props) {
     const columns = [
@@ -27,7 +28,20 @@ export default function Index(props) {
                 }
             }
         },
+        { field: 'deleteUrl', headerName: 'Delete', width: 90, renderCell: (cellValues) => {
+                if (props.auth.user.id === cellValues.row.user_id) {
+                    return <Button variant="contained" onClick={(e) => onDeleteClick(cellValues.row.id, e)}>
+                        Delete
+                    </Button>;
+                }
+            }
+        },
     ];
+
+    const onDeleteClick = (id, e) => {
+        e.preventDefault();
+        Inertia.delete(route('contact.destroy', id))
+    }
 
     return (
         <Authenticated

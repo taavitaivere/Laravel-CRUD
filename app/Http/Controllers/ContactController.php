@@ -109,4 +109,15 @@ class ContactController extends Controller
 
         return redirect(route('contact.show', [$contact]));
     }
+
+    public function destroy(Contact $contact, Request $request)
+    {
+        if ($request->user()->cannot('delete', $contact)) {
+            abort(403);
+        }
+
+        $contact->delete();
+
+        return redirect(route('contact.index'));
+    }
 }
