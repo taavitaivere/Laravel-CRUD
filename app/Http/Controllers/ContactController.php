@@ -134,4 +134,17 @@ class ContactController extends Controller
 
         return redirect(route('contact.show', [$contact]));
     }
+
+    public function forceDelete(int $contactId, Request $request)
+    {
+        $contact = Contact::withTrashed()->where('id', $contactId)->first();
+
+        if ($request->user()->cannot('forceDelete', $contact)) {
+            abort(403);
+        }
+
+        $contact->forceDelete();
+
+        return redirect(route('contact.deleted'));
+    }
 }

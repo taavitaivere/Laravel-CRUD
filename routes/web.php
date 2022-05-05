@@ -66,4 +66,8 @@ Route::post('/contact/{contact}/restore', [ContactController::class, 'restore'])
     ->middleware(['auth', 'verified'])
     ->name('contact.restore');
 
+Route::delete('/contact/{contact}/force', [ContactController::class, 'forceDelete'])
+    ->middleware(['auth', 'verified'])
+    ->name('contact.forceDelete');
+
 require __DIR__.'/auth.php';

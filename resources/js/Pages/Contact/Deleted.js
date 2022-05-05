@@ -22,11 +22,24 @@ export default function Index(props) {
                 }
             }
         },
+        { field: 'forceDeleteUrl', headerName: 'ForceDelete', width: 90, renderCell: (cellValues) => {
+                if (props.auth.user.id === cellValues.row.user_id) {
+                    return <Button variant="contained" onClick={(e) => onForceDeleteClick(cellValues.row.id, e)}>
+                        Delete Permanently
+                    </Button>;
+                }
+            }
+        },
     ];
 
     const onRestoreClick = (id, e) => {
         e.preventDefault();
         Inertia.post(route('contact.restore', id));
+    }
+
+    const onForceDeleteClick = (id, e) => {
+        e.preventDefault();
+        Inertia.delete(route('contact.forceDelete', id));
     }
 
     return (
