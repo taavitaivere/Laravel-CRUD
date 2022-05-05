@@ -45,7 +45,7 @@ class ContactController extends Controller
             'phone' => 'required',
             'age' => 'required',
             'country' => 'required',
-            'image' => 'image|max:2048',
+            'image' => 'nullable|image|max:2048',
         ]);
 
         $imagePath = $request->image ? $request->image->store('contactImage', 'public') : null;
