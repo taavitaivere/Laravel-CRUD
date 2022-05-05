@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Type\Integer;
 
 class ContactController extends Controller
 {
@@ -18,8 +19,8 @@ class ContactController extends Controller
         // return view('contact.show', ['contact' => $contact]);
     }
 
-    public function edit(Contact $contact){
-
+    public function edit(Contact $contact)
+    {
        return view('contact.edit', compact('contact'));
     }
 
@@ -119,5 +120,18 @@ class ContactController extends Controller
         $contact->delete();
 
         return redirect(route('contact.index'));
+    }
+
+    public function restore(int $contactId, Request $request)
+    {
+        $contact = Contact::withTrashed()->where('id', $contactId)->first();
+
+        if ($request->user()->cannot('restore', $contact)) {
+            abort(403);
+        }
+
+        $contact->restore();
+
+        return redirect(route('contact.show', [$contact]));
     }
 }

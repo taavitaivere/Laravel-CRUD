@@ -14,33 +14,19 @@ export default function Index(props) {
         { field: 'age', headerName: 'Age', type: 'number', width: 90 },
         { field: 'country', headerName: 'Country', width: 130 },
         { field: 'employee', headerName: 'Employee', width: 130 },
-        { field: 'showUrl', headerName: 'Show', width: 90, renderCell: (cellValues) => {
-                return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
-                    Show
-                </Button>;
-            }
-        },
-        { field: 'editUrl', headerName: 'Edit', width: 90, renderCell: (cellValues) => {
-            if (props.auth.user.id === cellValues.row.user_id) {
-                    return <Button variant="contained" href={route('contact.edit', cellValues.row.id)}>
-                        Edit
-                    </Button>;
-                }
-            }
-        },
-        { field: 'deleteUrl', headerName: 'Delete', width: 90, renderCell: (cellValues) => {
+        { field: 'restoreUrl', headerName: 'Restore', width: 90, renderCell: (cellValues) => {
                 if (props.auth.user.id === cellValues.row.user_id) {
-                    return <Button variant="contained" onClick={(e) => onDeleteClick(cellValues.row.id, e)}>
-                        Delete
+                    return <Button variant="contained" onClick={(e) => onRestoreClick(cellValues.row.id, e)}>
+                        Restore
                     </Button>;
                 }
             }
         },
     ];
 
-    const onDeleteClick = (id, e) => {
+    const onRestoreClick = (id, e) => {
         e.preventDefault();
-        Inertia.delete(route('contact.destroy', id))
+        Inertia.post(route('contact.restore', id));
     }
 
     return (
@@ -48,15 +34,7 @@ export default function Index(props) {
             auth={props.auth}
             errors={props.errors}
             header={<>
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight inline-block mr-2"> Contact list</h2>
-                <a className="inline-block px-2 py-1 rounded bg-indigo-600 text-sm text-indigo-50  hover:bg-indigo-400 mr-2"
-                   href={route('contact.create')}>
-                    Create
-                </a>
-                <a className="inline-block px-2 py-1 rounded bg-indigo-600 text-sm text-indigo-50  hover:bg-indigo-400"
-                   href={route('contact.deleted')}>
-                    Deleted Contacts
-                </a>
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight inline-block mr-2">Deleted Contacts</h2>
             </>}
         >
             <Head title="Contact list" />

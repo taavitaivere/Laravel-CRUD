@@ -39,6 +39,10 @@ Route::get('/contact/create', function () {
     return Inertia::render('Contact/Create');
 })->middleware(['auth', 'verified'])->name('contact.create');
 
+Route::get('/contact/deleted', function () {
+    return Inertia::render('Contact/Deleted', ['contacts'=> Contact::onlyTrashed()->get()]);
+})->middleware(['auth', 'verified'])->name('contact.deleted');
+
 Route::get('/contact/{contact}', function (Contact $contact) {
     return Inertia::render('Contact/Show', ['contact'=>$contact]);
 })->middleware(['auth', 'verified'])->name('contact.show');
@@ -57,5 +61,9 @@ Route::get('/contact', function () {
 Route::delete('/contact/{contact}', [ContactController::class, 'destroy'])
     ->middleware(['auth', 'verified'])
     ->name('contact.destroy');
+
+Route::post('/contact/{contact}/restore', [ContactController::class, 'restore'])
+    ->middleware(['auth', 'verified'])
+    ->name('contact.restore');
 
 require __DIR__.'/auth.php';
