@@ -126,6 +126,78 @@ Watch changes and HMR:
 ``` bash
 npm run hot
 ```
+### Typescript
+
+Install module types:
+
+``` bash
+npm install --save-dev @types/react-dom @types/react 
+```
+
+Install typescript:
+
+``` bash
+npm install --save-dev ts-loader typescript 
+```
+
+Init typescript:
+
+``` bash
+npx tsc --init --jsx react
+```
+
+### Upgrade react 18
+
+``` bash
+npm install react@18 react-dom@18
+```
+
+Before:
+
+```javascript
+require('./bootstrap');
+
+import React from 'react';
+import { render } from 'react-dom';
+import { createInertiaApp } from '@inertiajs/inertia-react';
+import { InertiaProgress } from '@inertiajs/progress';
+
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => require(`./Pages/${name}`),
+    setup({ el, App, props }) {
+        return render(<App {...props} />, el);
+    },
+});
+
+InertiaProgress.init({ color: '#4B5563' });
+```
+
+After:
+
+```javascript
+require('./bootstrap');
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { createInertiaApp } from '@inertiajs/inertia-react';
+import { InertiaProgress } from '@inertiajs/progress';
+
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+
+createInertiaApp({
+    title: (title) => `${title} - ${appName}`,
+    resolve: (name) => require(`./Pages/${name}`),
+    setup({ el, App, props }) {
+        const root = createRoot(el);
+        return root.render(<App {...props} />);
+    },
+});
+
+InertiaProgress.init({ color: '#4B5563' });
+```
 
 ### CRUD (Create, Read, Update, Delete) Step by step
 

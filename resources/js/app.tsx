@@ -1,7 +1,5 @@
-require('./bootstrap');
-
 import React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/inertia-react';
 import { InertiaProgress } from '@inertiajs/progress';
 
@@ -11,7 +9,8 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => require(`./Pages/${name}`),
     setup({ el, App, props }) {
-        return render(<App {...props} />, el);
+        const root = createRoot(el);
+        return root.render(<App {...props} />);
     },
 });
 
