@@ -1,3 +1,4 @@
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -92,10 +93,6 @@ Server command:
 
 ``` bash
 php artisan serve
-
-npm run dev
-
-npm run watch
 ```
 
 Database command:
@@ -109,6 +106,25 @@ Generate controller:
 ``` bash
 php artisan make:controller ContactController
 php artisan make:model Contact
+```
+### Node Commands
+
+Generate assets:
+
+``` bash
+npm run dev
+```
+
+Watching changes:
+
+``` bash
+npm run watch
+```
+
+Watch changes and HMR:
+
+``` bash
+npm run hot
 ```
 
 ### CRUD (Create, Read, Update, Delete) Step by step
