@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
+// @ts-ignore
 import Authenticated from '@/Layouts/Authenticated';
 import {Head, useForm} from '@inertiajs/inertia-react';
+// @ts-ignore
 import Label from "@/Components/Label";
 import TextField from "@mui/material/TextField"
 import Checkbox from "@mui/material/Checkbox"
+// @ts-ignore
 import ValidationErrors from "@/Components/ValidationErrors";
+import route from "ziggy-js";
 
-export default function Edit( props ) {
+export default function Edit( props: React.PropsWithChildren<any> ) {
     const { post, errors, data, setData  } = useForm({
         name: props.contact.name,
         city: props.contact.city,
@@ -16,18 +20,20 @@ export default function Edit( props ) {
         employee: props.contact.employee,
         image: null,
         _method: 'patch',
+        removeImage: false,
     });
 
-    const onHandleChange = (event) => {
-        setData(event.target.name , event.target.value)
+    const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setData(event.target.name as 'name' | 'city' | 'phone' | 'age' | 'country' | 'employee' | 'image' | 'removeImage', event.target.value);
     };
 
-    const onHandleChangeFile = (event) => {
-        setData(event.target.name, event.target.files[0] ?? null);
+    const onHandleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file: any = event.target.files ? event.target.files[0] : null;
+        setData(event.target.name as 'name' | 'city' | 'phone' | 'age' | 'country' | 'employee' | 'image' | 'removeImage', file);
     };
 
-    const onCheckboxHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value)
+    const onCheckboxHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setData(event.target.name as 'name' | 'city' | 'phone' | 'age' | 'country' | 'employee' | 'image' | 'removeImage', event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     }
 
     const onRemoveImage = () => {
@@ -35,8 +41,8 @@ export default function Edit( props ) {
         props.contact.image = null;
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         post(route('contact.update', [props.contact.id]));
     };
 
@@ -103,8 +109,6 @@ export default function Edit( props ) {
                             <div className="p-2">
                                 <Label forInput="employee" value="Employee"/>
                                 <Checkbox
-                                    type="checkbox"
-                                    label="employee"
                                     name="employee"
                                     checked={data.employee}
                                     onChange={onCheckboxHandleChange}

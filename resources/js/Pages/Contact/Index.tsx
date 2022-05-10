@@ -1,11 +1,28 @@
 import React from 'react';
+// @ts-ignore
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import Button  from "@mui/material/Button";
 import { Inertia } from "@inertiajs/inertia";
+import route from "ziggy-js";
 
-export default function Index(props) {
+interface ContactInterface {
+    age: number;
+    city: string;
+    country: string;
+    created_at: string;
+    deleted_at?: string;
+    employee: boolean;
+    id: number;
+    image?: string;
+    name: string;
+    phone: number;
+    updated_at?: string;
+    user_id: number;
+}
+
+export default function Index( props: React.PropsWithChildren<any> ) {
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'name', headerName: 'First name', width: 130 },
@@ -14,33 +31,36 @@ export default function Index(props) {
         { field: 'age', headerName: 'Age', type: 'number', width: 90 },
         { field: 'country', headerName: 'Country', width: 130 },
         { field: 'employee', headerName: 'Employee', width: 130 },
-        { field: 'showUrl', headerName: 'Show', width: 90, renderCell: (cellValues) => {
-                return <Button variant="contained" href={route('contact.show', cellValues.row.id)}>
-                    Show
+        { field: 'showUrl', headerName: 'Show', width: 90, renderCell: (cellValues: any) => {
+            const contact: ContactInterface = cellValues.row;
+
+            return <Button variant="contained" href={route('contact.show', [contact.id])}>
+                Show
+            </Button>;
+        }},
+        { field: 'editUrl', headerName: 'Edit', width: 90, renderCell: (cellValues: any) => {
+            const contact: ContactInterface = cellValues.row;
+
+            if (props.auth.user.id === contact.user_id) {
+                return <Button variant="contained" href={route('contact.edit', [contact.id])}>
+                    Edit
                 </Button>;
             }
-        },
-        { field: 'editUrl', headerName: 'Edit', width: 90, renderCell: (cellValues) => {
-            if (props.auth.user.id === cellValues.row.user_id) {
-                    return <Button variant="contained" href={route('contact.edit', cellValues.row.id)}>
-                        Edit
-                    </Button>;
-                }
+        }},
+        { field: 'deleteUrl', headerName: 'Delete', width: 90, renderCell: (cellValues: any) => {
+            const contact: ContactInterface = cellValues.row;
+
+            if (props.auth.user.id === contact.user_id) {
+                return <Button variant="contained" onClick={(event) => onDeleteClick(contact, event)}>
+                    Delete
+                </Button>;
             }
-        },
-        { field: 'deleteUrl', headerName: 'Delete', width: 90, renderCell: (cellValues) => {
-                if (props.auth.user.id === cellValues.row.user_id) {
-                    return <Button variant="contained" onClick={(e) => onDeleteClick(cellValues.row.id, e)}>
-                        Delete
-                    </Button>;
-                }
-            }
-        },
+        }},
     ];
 
-    const onDeleteClick = (id, e) => {
-        e.preventDefault();
-        Inertia.delete(route('contact.destroy', id))
+    const onDeleteClick = (contact: ContactInterface, event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        Inertia.delete(route('contact.destroy', [contact.id]))
     }
 
     return (

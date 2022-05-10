@@ -1,8 +1,9 @@
 import React from 'react';
+// @ts-ignore
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 
-export default function Show(props) {
+export default function Show(props: React.PropsWithChildren<any>) {
     return (
         <Authenticated
             auth={props.auth}

@@ -1,22 +1,28 @@
-import React from 'react';
+import React, {FormEvent} from 'react';
+// @ts-ignore
 import Authenticated from '@/Layouts/Authenticated';
 import {Head, useForm} from '@inertiajs/inertia-react';
+// @ts-ignore
 import Button from "@/Components/Button";
+// @ts-ignore
 import ValidationErrors from "@/Components/ValidationErrors";
 import { FormGroup, FormControlLabel, TextField} from "@mui/material";
 import Checkbox from '@mui/material/Checkbox';
+import route from 'ziggy-js';
 
-export default function Create(props) {
-    const onHandleChange = (event) => {
-        setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
+
+export default function Create(props: React.PropsWithChildren<any>) {
+    const onHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setData(event.target.name as 'name' | 'city' | 'phone' | 'age' | 'country' | 'employee' | 'image', event.target.type === 'checkbox' ? event.target.checked : event.target.value);
     };
 
-    const onHandleChangeFile = (event) => {
-        setData(event.target.name, event.target.files[0] ?? null);
+    const onHandleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file: any = event.target.files ? event.target.files[0] : null;
+        setData(event.target.name as 'name' | 'city' | 'phone' | 'age' | 'country' | 'employee' | 'image', file);
     };
 
-    const submit = (e) => {
-        e.preventDefault();
+    const submit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
         post(route('contact.store'));
     };
 
