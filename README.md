@@ -146,6 +146,38 @@ Init typescript:
 npx tsc --init --jsx react
 ```
 
+### Testing
+
+Update Docker package list
+
+``` bash
+apt-get update
+```
+
+Install Dependencies
+
+``` bash
+apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+```
+
+Install Cypress 
+
+``` bash
+npx cypress install
+```
+
+Open cypress interface
+
+``` bash
+npx cypress open
+```
+
+Run tests
+
+``` bash
+npx cypress run cypress/integration/contact.spec.js
+```
+
 ### Upgrade react 18
 
 ``` bash
